@@ -29,4 +29,9 @@ public class MachineBase : MonoBehaviour
     {
         _indicator.GetComponent<Renderer>().material.color = _indicatorDefaultColor;
     }
+
+    public virtual void Activate()
+    {
+        // base script do nothing, it has to be implemented!
+    }
 }

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -10,11 +11,20 @@ public class Controller : MonoBehaviour
     private GameObject _camera = null;
     private Vector3 _movement = Vector3.zero;
 
+    public List<MachineBase> _machinesAtReach = new List<MachineBase>();
+
     private void Start()
     {
         _camera = Camera.allCameras.FirstOrDefault(c => c.name == "Main Camera")?.gameObject;
         if (_camera == null)
             Debug.LogError("No camera called 'Main Camera' found!");
+
+        var collisionDetector = gameObject.GetComponentInChildren<CollisionDetector>();
+        if (collisionDetector == null)
+            Debug.LogError("No collision detector found!");
+
+        collisionDetector.OnTriggerEnterDelegate += OnTriggerEnter;
+        collisionDetector.OnTriggerExitDelegate += OnTriggerExit;
     }
 
     private void Update()
@@ -43,5 +53,28 @@ public class Controller : MonoBehaviour
 
         if (DebugLog)
             Debug.Log($"movement X={_movement.x} Y={_movement.y} Z={_movement.z}");
+    }
+
+    void OnAction()
+    {
+        if (_machinesAtReach.Count == 0)
+            return;
+
+        // if decor is packed, we might need to activate the closer one :)
+        _machinesAtReach[0].Activate();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        var otherMachine = other.gameObject.GetComponentInParent<MachineBase>();
+        if (otherMachine != null && !_machinesAtReach.Contains(otherMachine))
+            _machinesAtReach.Add(otherMachine);
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        var otherMachine = other.gameObject.GetComponentInParent<MachineBase>();
+        if (otherMachine != null)
+            _machinesAtReach.Remove(otherMachine);
     }
 }
