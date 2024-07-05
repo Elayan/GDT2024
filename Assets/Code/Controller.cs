@@ -32,7 +32,9 @@ public class Controller : MonoBehaviour
 
         // But it's comfier to move relatively to camera angle.
         // But since camera is angled down, I first have to project right/forward vector to a flat plan.
-        // That being said, there's some weird sliding with I'm doing sooooo GOOD LUCK WITH THAT x)
+        // That being said, there are a few issues:
+        //  - with keyboard, it's quickly annoying, since right/forward are never refresh while direction is maintained
+        //  - with gamepad, there's a slight sliding at stick rebound
         _movement = Vector3.zero;
         _movement += _camera.transform.right * vecValue.x;
         _movement += _camera.transform.forward * vecValue.y;
