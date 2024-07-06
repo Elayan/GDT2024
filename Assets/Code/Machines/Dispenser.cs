@@ -6,10 +6,10 @@ public class Dispenser : MachineBase
 {
     public override void Activate(Tray tray)
     {
-        if (!tray.HasEmptySlot())
+        if (tray.IsFull)
         {
             if (DebugLog)
-                Debug.Log("Tray is full, machine will not dispense.");
+                Debug.Log("Tray is full, Dispenser will not dispense.");
             return;
         }
 

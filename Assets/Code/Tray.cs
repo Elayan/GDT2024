@@ -17,10 +17,10 @@ public class Tray : MonoBehaviour
             _contentBySlots.Add(slotRoot.GetChild(i).gameObject, null);
     }
 
-    public bool HasEmptySlot()
-    {
-        return _contentBySlots.Any(pair => pair.Value == null);
-    }
+    public bool HasEmptySlot => _contentBySlots.Any(pair => pair.Value == null);
+    public bool IsFull => !HasEmptySlot;
+    public bool HasAnything => _contentBySlots.Any(pair => pair.Value != null);
+    public bool IsEmpty => !HasAnything;
 
     public void PutOnTray(GameObject prefab)
     {
@@ -30,5 +30,16 @@ public class Tray : MonoBehaviour
         item.transform.parent = firstEmptySlot.transform;
         item.transform.localPosition = Vector3.zero;
         _contentBySlots[firstEmptySlot] = item;
+    }
+
+    public void ClearTray()
+    {
+        foreach (var pair in _contentBySlots)
+        {
+            if (pair.Value == null)
+                continue;
+
+            Destroy(pair.Value);
+        }
     }
 }
