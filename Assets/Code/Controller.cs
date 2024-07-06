@@ -11,7 +11,8 @@ public class Controller : MonoBehaviour
     private GameObject _camera = null;
     private Vector3 _movement = Vector3.zero;
 
-    public List<MachineBase> _machinesAtReach = new List<MachineBase>();
+    private List<MachineBase> _machinesAtReach = new List<MachineBase>();
+    private Tray _tray = null;
 
     private void Start()
     {
@@ -21,10 +22,14 @@ public class Controller : MonoBehaviour
 
         var collisionDetector = gameObject.GetComponentInChildren<CollisionDetector>();
         if (collisionDetector == null)
-            Debug.LogError("No collision detector found!");
+            Debug.LogError("No CollisionDetector component found in children!");
 
         collisionDetector.OnTriggerEnterDelegate += OnTriggerEnter;
         collisionDetector.OnTriggerExitDelegate += OnTriggerExit;
+
+        _tray = GetComponentInChildren<Tray>();
+        if (_tray == null)
+            Debug.LogError("No Tray component found in children!");
     }
 
     private void Update()
@@ -61,7 +66,7 @@ public class Controller : MonoBehaviour
             return;
 
         // if decor is packed, we might need to activate the closer one :)
-        _machinesAtReach[0].Activate();
+        _machinesAtReach[0].Activate(_tray);
     }
 
     private void OnTriggerEnter(Collider other)
