@@ -6,8 +6,6 @@ public abstract class MachineBase : MonoBehaviour
 
     public Color IndicatorColor;
 
-    public GameObject Dispensed;
-
     private GameObject _indicator;
     private Color _indicatorDefaultColor;
 

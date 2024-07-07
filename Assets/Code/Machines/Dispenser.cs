@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Dispenser : MachineBase
 {
+    public GameObject Dispensed;
+
     public override void Activate(Tray tray)
     {
         if (tray.IsFull)
@@ -13,6 +15,6 @@ public class Dispenser : MachineBase
             return;
         }
 
-        tray.PutOnTray(Dispensed);
+        tray.Put(Dispensed);
     }
 }
