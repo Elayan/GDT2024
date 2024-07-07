@@ -22,16 +22,36 @@ public class Tray : MonoBehaviour
     public bool HasAnything => _contentBySlots.Any(pair => pair.Value != null);
     public bool IsEmpty => !HasAnything;
 
-    public void PutOnTray(GameObject prefab)
+    /// <summary>
+    /// Populated when called.
+    /// </summary>
+    public GameObject[] Content => _contentBySlots.Values.Where(v => v != null).ToArray();
+
+    /// <summary>
+    /// Instantiates from prefab, then place it.
+    /// </summary>
+    /// <param name="prefab"></param>
+    public void Put(GameObject prefab)
+    {
+        var item = Instantiate(prefab);
+        Place(item);
+    }
+
+    /// <summary>
+    /// Place <paramref name="item"/> on first empty slot found.
+    /// </summary>
+    /// <param name="item"></param>
+    public void Place(GameObject item)
     {
         var firstEmptySlot = _contentBySlots.First(pair => pair.Value == null).Key;
-
-        var item = Instantiate(prefab);
         item.transform.parent = firstEmptySlot.transform;
         item.transform.localPosition = Vector3.zero;
         _contentBySlots[firstEmptySlot] = item;
     }
 
+    /// <summary>
+    /// Destroys everything on every slot of the tray.
+    /// </summary>
     public void ClearTray()
     {
         foreach (var pair in _contentBySlots)
@@ -41,5 +61,17 @@ public class Tray : MonoBehaviour
 
             Destroy(pair.Value);
         }
+    }
+
+    /// <summary>
+    /// Removes given item from its tray slot (doesn't destroy it!)
+    /// </summary>
+    /// <param name="item"></param>
+    /// <returns></returns>
+    public GameObject Take(GameObject item)
+    {
+        var slot = _contentBySlots.First(pair => pair.Value == item);
+        _contentBySlots[slot.Key] = null;
+        return item;
     }
 }
