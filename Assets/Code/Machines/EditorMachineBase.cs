@@ -6,8 +6,10 @@ public abstract class EditorMachineBase : MachineBase
     private Transform _slot = null;
     private GameObject _itemOnSlot = null;
 
-    private void Start()
+    protected override void Initialize()
     {
+        base.Initialize();
+
         _slot = Toolbox.FindInChildren(transform, "Slot");
         if (_slot == null)
             Debug.LogError("Missing child named 'Slot'!");
@@ -29,7 +31,8 @@ public abstract class EditorMachineBase : MachineBase
             return;
         }
 
-        var editableItem = tray.Content.FirstOrDefault(c => IsItemEditable(c));
+        var editableItemsAndRecipes = tray.Content.ToDictionary(c => c, c => c.GetComponentInChildren<Recipe>());
+        var editableItem = editableItemsAndRecipes.FirstOrDefault(c => IsItemEditable(c.Key, c.Value)).Key;
         if (editableItem == null)
         {
             if (DebugLog)
@@ -40,8 +43,9 @@ public abstract class EditorMachineBase : MachineBase
         var item = tray.Take(editableItem);
         item.transform.parent = _slot;
         item.transform.localPosition = Vector3.zero;
+        _itemOnSlot = item;
 
-        EditItem(item);
+        EditItem(item, editableItemsAndRecipes[item]);
     }
 
     private void Dispense(Tray tray)
@@ -62,7 +66,7 @@ public abstract class EditorMachineBase : MachineBase
     /// </summary>
     /// <param name="item"></param>
     /// <returns></returns>
-    protected virtual bool IsItemEditable(GameObject item)
+    protected virtual bool IsItemEditable(GameObject item, Recipe recipe)
     {
         return false;
     }
@@ -71,7 +75,7 @@ public abstract class EditorMachineBase : MachineBase
     /// Edit the item.
     /// </summary>
     /// <param name="item"></param>
-    protected virtual void EditItem(GameObject item)
+    protected virtual void EditItem(GameObject item, Recipe recipe)
     {
     }
 }

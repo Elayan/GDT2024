@@ -11,6 +11,11 @@ public abstract class MachineBase : MonoBehaviour
 
     void Start()
     {
+        Initialize();
+    }
+
+    protected virtual void Initialize()
+    {
         var collisionDetector = gameObject.GetComponentInChildren<CollisionDetector>();
         collisionDetector.OnTriggerEnterDelegate += OnTriggerEnter;
         collisionDetector.OnTriggerExitDelegate += OnTriggerExit;
