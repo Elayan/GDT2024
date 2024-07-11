@@ -1,6 +1,7 @@
+using System;
 using UnityEngine;
 
-public abstract class MachineBase : MonoBehaviour
+public abstract class MachineBase : ActivableElement
 {
     public bool DebugLog = false;
 
@@ -9,17 +10,8 @@ public abstract class MachineBase : MonoBehaviour
     private GameObject _indicator;
     private Color _indicatorDefaultColor;
 
-    void Start()
+    protected override void Initialize()
     {
-        Initialize();
-    }
-
-    protected virtual void Initialize()
-    {
-        var collisionDetector = gameObject.GetComponentInChildren<CollisionDetector>();
-        collisionDetector.OnTriggerEnterDelegate += OnTriggerEnter;
-        collisionDetector.OnTriggerExitDelegate += OnTriggerExit;
-
         _indicator = Toolbox.FindInChildren(transform, "Indicator")?.gameObject;
         if (_indicator == null)
             Debug.LogError($"Missing 'Indicator' in {name}'s children!", gameObject);
@@ -27,18 +19,18 @@ public abstract class MachineBase : MonoBehaviour
         _indicatorDefaultColor = _indicator.GetComponent<Renderer>().material.color;
     }
 
-    private void OnTriggerEnter(Collider other)
+    protected override void OnTriggerEnter(Collider other)
     {
         _indicator.GetComponent<Renderer>().material.color = IndicatorColor;
     }
 
-    private void OnTriggerExit(Collider other)
+    protected override void OnTriggerExit(Collider other)
     {
         _indicator.GetComponent<Renderer>().material.color = _indicatorDefaultColor;
     }
 
     public virtual void Activate(Tray tray)
     {
-        // base script do nothing, it has to be implemented!
+        throw new NotImplementedException();
     }
 }
