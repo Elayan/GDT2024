@@ -18,18 +18,18 @@ public class Controller : MonoBehaviour
     {
         _camera = Camera.allCameras.FirstOrDefault(c => c.name == "Main Camera")?.gameObject;
         if (_camera == null)
-            Debug.LogError("No camera called 'Main Camera' found!");
+            Debug.LogError("No camera called 'Main Camera' found!", gameObject);
 
         var collisionDetector = gameObject.GetComponentInChildren<CollisionDetector>();
         if (collisionDetector == null)
-            Debug.LogError("No CollisionDetector component found in children!");
+            Debug.LogError($"No CollisionDetector component found in {name}'s children!", gameObject);
 
         collisionDetector.OnTriggerEnterDelegate += OnTriggerEnter;
         collisionDetector.OnTriggerExitDelegate += OnTriggerExit;
 
         _tray = GetComponentInChildren<Tray>();
         if (_tray == null)
-            Debug.LogError("No Tray component found in children!");
+            Debug.LogError($"No Tray component found in {name}'s children!", gameObject);
     }
 
     private void Update()

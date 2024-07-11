@@ -12,7 +12,7 @@ public abstract class EditorMachineBase : MachineBase
 
         _slot = Toolbox.FindInChildren(transform, "Slot");
         if (_slot == null)
-            Debug.LogError("Missing child named 'Slot'!");
+            Debug.LogError($"Missing 'Slot' in {name}'s children!", gameObject);
     }
 
     public override void Activate(Tray tray)

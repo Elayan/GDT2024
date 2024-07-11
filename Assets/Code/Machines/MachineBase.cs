@@ -22,7 +22,7 @@ public abstract class MachineBase : MonoBehaviour
 
         _indicator = Toolbox.FindInChildren(transform, "Indicator")?.gameObject;
         if (_indicator == null)
-            Debug.LogError($"Machine {name} didn't find its Indicator!");
+            Debug.LogError($"Missing 'Indicator' in {name}'s children!", gameObject);
 
         _indicatorDefaultColor = _indicator.GetComponent<Renderer>().material.color;
     }
