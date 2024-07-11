@@ -754,7 +754,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 324647719}
-  - component: {fileID: 324647721}
   - component: {fileID: 324647720}
   - component: {fileID: 324647722}
   m_Layer: 0
@@ -774,7 +773,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.22518112, z: -0, w: 0.97431695}
   m_LocalPosition: {x: -1.7, y: 1, z: 1}
-  m_LocalScale: {x: 2, y: 1, z: 2}
+  m_LocalScale: {x: 3, y: 1, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 670181356}
@@ -802,14 +801,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!33 &324647721
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 324647718}
-  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!114 &324647722
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1430,7 +1421,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd6ec0c9ec43f3a45868b534585179d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DebugLog: 0
+  DebugLog: 1
   ActivableBubbleColor: {r: 0, g: 0.4180913, b: 1, a: 1}
   ActivableBubble: {fileID: 1336056135}
 --- !u!1 &693647446
@@ -3200,8 +3191,8 @@ Transform:
   m_GameObject: {fileID: 1336056135}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7038965, y: -0.06730324, z: -0.06730322, w: 0.7038965}
-  m_LocalPosition: {x: 0.53, y: 3.65, z: 0.41}
-  m_LocalScale: {x: 0.24916202, y: 0.3352603, z: 0.3352603}
+  m_LocalPosition: {x: 0.53, y: 3.65, z: 0.701}
+  m_LocalScale: {x: 0.2623676, y: 0.3530291, z: 0.3530291}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1450897970}
@@ -3616,6 +3607,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DebugLog: 0
   Speed: 10
+  _clientsAtReach: []
 --- !u!114 &1461992107
 MonoBehaviour:
   m_ObjectHideFlags: 0

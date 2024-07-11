@@ -12,7 +12,7 @@ public class Controller : MonoBehaviour
     private Vector3 _movement = Vector3.zero;
 
     private List<MachineBase> _machinesAtReach = new List<MachineBase>();
-    private List<Client> _clientsAtReach = new List<Client>();
+    public List<Client> _clientsAtReach = new List<Client>();
     private Tray _tray = null;
 
     private void Start()

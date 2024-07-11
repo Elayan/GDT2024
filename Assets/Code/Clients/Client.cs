@@ -10,6 +10,8 @@ public class Client : ActivableElement
 
     protected override void Initialize()
     {
+        base.Initialize();
+
         var bubbleRenderer = ActivableBubble?.GetComponent<Renderer>();
         if (bubbleRenderer == null)
             Debug.LogError("No Activable Bubble with Renderer component!", gameObject);
