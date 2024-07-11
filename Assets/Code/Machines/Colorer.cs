@@ -18,14 +18,14 @@ public class Colorer : EditorMachineBase
         var elementToColor = Toolbox.FindInChildren(item.transform, ColorElementName);
         if (elementToColor == null)
         {
-            Debug.LogWarning($"No element named '{ColorElementName}' found in {item.name}'s children, Colorer will not color anything.");
+            Debug.LogWarning($"No element named '{ColorElementName}' found in {item.name}'s children, Colorer will not color anything.", gameObject);
             return;
         }
 
         var renderer = elementToColor.GetComponent<Renderer>();
         if (renderer == null)
         {
-            Debug.LogWarning($"Element '{ColorElementName}' in {item.name}'s children has no Renderer, Colorer will not color anything.");
+            Debug.LogWarning($"Element '{ColorElementName}' in {item.name}'s children has no Renderer, Colorer will not color anything.", gameObject);
             return;
         }
 

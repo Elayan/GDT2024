@@ -11,7 +11,7 @@ public class Tray : MonoBehaviour
     {
         var slotRoot = Toolbox.FindInChildren(transform, "Slots");
         if (slotRoot == null)
-            Debug.LogError("No child 'Slots' found!");
+            Debug.LogError("No child 'Slots' found!", gameObject);
 
         for (int i = 0; i < slotRoot.childCount; i++)
             _contentBySlots.Add(slotRoot.GetChild(i).gameObject, null);

@@ -11,7 +11,7 @@ public class Dispenser : MachineBase
         if (tray.IsFull)
         {
             if (DebugLog)
-                Debug.Log("Tray is full, Dispenser will not dispense.");
+                Debug.Log("Tray is full, Dispenser will not dispense.", gameObject);
             return;
         }
 

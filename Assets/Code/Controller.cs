@@ -57,7 +57,7 @@ public class Controller : MonoBehaviour
         _movement.y = 0;
 
         if (DebugLog)
-            Debug.Log($"movement X={_movement.x} Y={_movement.y} Z={_movement.z}");
+            Debug.Log($"movement X={_movement.x} Y={_movement.y} Z={_movement.z}", gameObject);
     }
 
     void OnAction()

@@ -27,7 +27,7 @@ public abstract class EditorMachineBase : MachineBase
         if (tray.IsEmpty)
         {
             if (DebugLog)
-                Debug.Log("Tray is empty, Editor Machine will do nothing.");
+                Debug.Log("Tray is empty, Editor Machine will do nothing.", gameObject);
             return;
         }
 
@@ -36,7 +36,7 @@ public abstract class EditorMachineBase : MachineBase
         if (editableItem == null)
         {
             if (DebugLog)
-                Debug.Log("No editable item on Tray, Editor Machine will do nothing.");
+                Debug.Log("No editable item on Tray, Editor Machine will do nothing.", gameObject);
             return;
         }
 
@@ -53,7 +53,7 @@ public abstract class EditorMachineBase : MachineBase
         if (tray.IsFull)
         {
             if (DebugLog)
-                Debug.Log("Tray is full, Dispenser will not dispense.");
+                Debug.Log("Tray is full, Dispenser will not dispense.", gameObject);
             return;
         }
 

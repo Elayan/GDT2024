@@ -7,7 +7,7 @@ public class Disposer : MachineBase
         if (tray.IsEmpty)
         {
             if (DebugLog)
-                Debug.Log("Tray is empty, Disposer will not dispose.");
+                Debug.Log("Tray is empty, Disposer will not dispose.", gameObject);
             return;
         }
 
