@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4912550147134474512}
-  - component: {fileID: 7825430783458541053}
+  - component: {fileID: 8415075493453599033}
   m_Layer: 0
   m_Name: Glass
   m_TagString: Untagged
@@ -66,7 +66,7 @@ Transform:
   - {fileID: 4359966509548447194}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7825430783458541053
+--- !u!114 &8415075493453599033
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -75,7 +75,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5742337250155698037}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23fbb5893719b3d449cee321b69e10b8, type: 3}
+  m_Script: {fileID: 11500000, guid: 63d587b45b0e82343b3e112dc31d6281, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   MachinesWhoEdited: []
