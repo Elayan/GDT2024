@@ -6,12 +6,14 @@ public class Colorer : EditorMachineBase
     public string ColorElementName = string.Empty;
     public Color Color = Color.white;
 
-    protected override bool IsItemEditable(GameObject item, Recipe recipe)
+    public RecipeContent Content;
+
+    protected override bool IsItemEditable(GameObject item, Drink recipe)
     {
         return recipe != null;
     }
 
-    protected override void EditItem(GameObject item, Recipe recipe)
+    protected override void EditItem(GameObject item, Drink recipe)
     {
         recipe.MachinesWhoEdited.Add(this);
 
@@ -33,7 +35,7 @@ public class Colorer : EditorMachineBase
         renderer.material.color = mixedColor;
     }
 
-    private Color ComputeMixedColor(Recipe recipe)
+    private Color ComputeMixedColor(Drink recipe)
     {
         var mixedColor = Color;
         var previousColorers = recipe.MachinesWhoEdited.OfType<Colorer>().Where(c => c.ColorElementName == ColorElementName).ToArray();

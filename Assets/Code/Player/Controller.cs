@@ -63,11 +63,15 @@ public class Controller : MonoBehaviour
 
     void OnAction()
     {
-        if (_machinesAtReach.Count == 0)
-            return;
-
         // if decor is packed, we might need to activate the closer one :)
-        _machinesAtReach[0].Activate(_tray);
+        if (_machinesAtReach.Count != 0)
+        {
+            _machinesAtReach[0].Activate(_tray);
+        }
+        else if (_clientsAtReach.Count != 0)
+        {
+            _clientsAtReach[0].Activate(_tray);
+        }
     }
 
     private void OnTriggerEnter(Collider other)

@@ -31,7 +31,7 @@ public abstract class EditorMachineBase : MachineBase
             return;
         }
 
-        var editableItemsAndRecipes = tray.Content.ToDictionary(c => c, c => c.GetComponentInChildren<Recipe>());
+        var editableItemsAndRecipes = tray.Content.ToDictionary(c => c, c => c.GetComponentInChildren<Drink>());
         var editableItem = editableItemsAndRecipes.FirstOrDefault(c => IsItemEditable(c.Key, c.Value)).Key;
         if (editableItem == null)
         {
@@ -66,7 +66,7 @@ public abstract class EditorMachineBase : MachineBase
     /// </summary>
     /// <param name="item"></param>
     /// <returns></returns>
-    protected virtual bool IsItemEditable(GameObject item, Recipe recipe)
+    protected virtual bool IsItemEditable(GameObject item, Drink recipe)
     {
         return false;
     }
@@ -75,7 +75,7 @@ public abstract class EditorMachineBase : MachineBase
     /// Edit the item.
     /// </summary>
     /// <param name="item"></param>
-    protected virtual void EditItem(GameObject item, Recipe recipe)
+    protected virtual void EditItem(GameObject item, Drink recipe)
     {
     }
 }

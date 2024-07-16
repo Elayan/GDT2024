@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public abstract class MachineBase : ActivableElement
@@ -12,6 +11,8 @@ public abstract class MachineBase : ActivableElement
 
     protected override void Initialize()
     {
+        base.Initialize();
+
         _indicator = Toolbox.FindInChildren(transform, "Indicator")?.gameObject;
         if (_indicator == null)
             Debug.LogError($"Missing 'Indicator' in {name}'s children!", gameObject);
@@ -27,10 +28,5 @@ public abstract class MachineBase : ActivableElement
     protected override void OnTriggerExit(Collider other)
     {
         _indicator.GetComponent<Renderer>().material.color = _indicatorDefaultColor;
-    }
-
-    public virtual void Activate(Tray tray)
-    {
-        throw new NotImplementedException();
     }
 }

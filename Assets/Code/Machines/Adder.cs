@@ -5,12 +5,14 @@ public class Adder : EditorMachineBase
     public GameObject AddPrefab = null;
     public string AddOnElementName = string.Empty;
 
-    protected override bool IsItemEditable(GameObject item, Recipe recipe)
+    public RecipeExtra Extra;
+
+    protected override bool IsItemEditable(GameObject item, Drink recipe)
     {
         return recipe != null && !recipe.MachinesWhoEdited.Contains(this);
     }
 
-    protected override void EditItem(GameObject item, Recipe recipe)
+    protected override void EditItem(GameObject item, Drink recipe)
     {
         recipe.MachinesWhoEdited.Add(this);
 

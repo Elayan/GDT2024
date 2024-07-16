@@ -1037,6 +1037,7 @@ MonoBehaviour:
   IndicatorColor: {r: 1, g: 0.36862746, b: 0, a: 0}
   ColorElementName: Content
   Color: {r: 1, g: 0.36862746, b: 0, a: 1}
+  Content: 0
 --- !u!1 &476511074
 GameObject:
   m_ObjectHideFlags: 0
@@ -1424,6 +1425,7 @@ MonoBehaviour:
   DebugLog: 1
   ActivableBubbleColor: {r: 0, g: 0.4180913, b: 1, a: 1}
   ActivableBubble: {fileID: 1336056135}
+  BubbleText: {fileID: 1958961999}
 --- !u!1 &693647446
 GameObject:
   m_ObjectHideFlags: 0
@@ -3689,6 +3691,7 @@ MonoBehaviour:
   IndicatorColor: {r: 0, g: 0.9056604, b: 0.8418814, a: 0}
   AddPrefab: {fileID: 8987731961095045531, guid: e0193e6d561db0745b63a17404a12a81, type: 3}
   AddOnElementName: IceCubeSlot
+  Extra: 0
 --- !u!1 &1520319155
 GameObject:
   m_ObjectHideFlags: 0
@@ -4521,6 +4524,7 @@ MonoBehaviour:
   IndicatorColor: {r: 0.8867924, g: 0.8867924, b: 0.14640439, a: 0}
   ColorElementName: Content
   Color: {r: 0.9372549, g: 0.9372549, b: 0.7529412, a: 1}
+  Content: 1
 --- !u!1 &1884575368
 GameObject:
   m_ObjectHideFlags: 0

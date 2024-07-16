@@ -28,6 +28,11 @@ public class Tray : MonoBehaviour
     public GameObject[] Content => _contentBySlots.Values.Where(v => v != null).ToArray();
 
     /// <summary>
+    /// Populated from <see cref="Content"/> when called.
+    /// </summary>
+    public Drink[] Drinks => Content.Select(c => c.GetComponent<Drink>()).ToArray();
+
+    /// <summary>
     /// Instantiates from prefab, then place it.
     /// </summary>
     /// <param name="prefab"></param>
@@ -47,6 +52,15 @@ public class Tray : MonoBehaviour
         item.transform.parent = firstEmptySlot.transform;
         item.transform.localPosition = Vector3.zero;
         _contentBySlots[firstEmptySlot] = item;
+    }
+
+    /// <summary>
+    /// Destroys <paramref name="item"/> from Tray.
+    /// </summary>
+    /// <param name="item"></param>
+    public void Remove(GameObject item)
+    {
+        Destroy(item);
     }
 
     /// <summary>
