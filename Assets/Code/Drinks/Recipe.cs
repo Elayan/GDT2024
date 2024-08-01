@@ -9,6 +9,7 @@ public enum RecipeContent
 {
     Juice,
     Vodka,
+    Rhum
 }
 
 public enum RecipeExtra
