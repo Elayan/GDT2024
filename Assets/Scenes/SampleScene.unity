@@ -1426,6 +1426,7 @@ MonoBehaviour:
   ActivableBubbleColor: {r: 0, g: 0.4180913, b: 1, a: 1}
   ActivableBubble: {fileID: 1336056135}
   BubbleText: {fileID: 1958961999}
+  WaitTimeBeforeLeaving: 3
 --- !u!1 &693647446
 GameObject:
   m_ObjectHideFlags: 0
@@ -1608,7 +1609,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: VODKA
+  m_text: RHUM
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4484,7 +4485,7 @@ GameObject:
   - component: {fileID: 1845191367}
   - component: {fileID: 1845191368}
   m_Layer: 0
-  m_Name: Vodka
+  m_Name: Rhum
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
