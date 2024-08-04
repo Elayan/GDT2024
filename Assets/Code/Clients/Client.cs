@@ -16,8 +16,14 @@ public class Client : ActivableElement
     private TextMeshPro _bubbleTextMesh = null;
 
     public float WaitTimeBeforeLeaving = 3.0f;
+    [SerializeField]
+    private float _speed = 5f;
 
     private Recipe _order = null;
+
+    private Transform _exit = null;
+
+    public event Action OnLeaving;
 
     private enum State
     {
@@ -32,9 +38,19 @@ public class Client : ActivableElement
         if (_state != State.Leaving)
             return;
 
+        if (_exit == null)
+        {
+            FindExit();
+        }
+
+        if (_exit != null)
+        {
+            transform.Translate((_exit.position - transform.position).normalized * _speed * Time.deltaTime);
+        }
         WaitTimeBeforeLeaving -= Time.deltaTime;
         if (WaitTimeBeforeLeaving < 0.0f)
         {
+            OnLeaving?.Invoke();
             Destroy(gameObject);
         }
     }
@@ -121,5 +137,13 @@ public class Client : ActivableElement
             sb.AppendLine($"{extra.Key.ToString()}{(extra.Value <= 1 ? string.Empty : $" x{extra.Value}")}");
 
         return sb.ToString();
+    }
+    private void FindExit()
+    {
+        _exit = GameObject.FindGameObjectWithTag("Exit").transform;
+        if (_exit == null)
+        {
+            Debug.LogError("Missing exit position");
+        }
     }
 }

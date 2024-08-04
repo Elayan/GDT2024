@@ -22,6 +22,6 @@ public class Randomizer
     private Random _random;
 
     public int Next() => _random.Next();
-    public int Next(int max) => _random.Next(max);
-    public int Next(int min, int max) => _random.Next(min, max);
+    public int Next(int maxExclusive) => _random.Next(maxExclusive);
+    public int Next(int minInclusive, int maxExclusive) => _random.Next(minInclusive, maxExclusive);
 }
