@@ -1,13 +1,17 @@
 using System;
+using System.Collections;
 using System.Linq;
 using System.Text;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Client : ActivableElement
 {
     public bool DebugLog = false;
 
+    [SerializeField]
+    private ClientDialogueSO _clientDialogueSO;
     public Color ActivableBubbleColor = Color.white;
     public GameObject ActivableBubble = null;
     private Color _activableBubbleDefaultColor = Color.white;
@@ -22,6 +26,16 @@ public class Client : ActivableElement
     private Recipe _order = null;
 
     private Transform _exit = null;
+
+    [Header("Timer")]
+    [SerializeField]
+    private float _waitingTime = 10f;
+    [SerializeField]
+    private GameObject _timerGO;
+
+    private Image _imageTimer;
+    private Randomizer _rand;
+    private Coroutine _timerRoutine;
 
     public event Action OnLeaving;
 
@@ -58,7 +72,7 @@ public class Client : ActivableElement
     protected override void Initialize()
     {
         base.Initialize();
-
+        
         var bubbleRenderer = ActivableBubble?.GetComponent<Renderer>();
         if (bubbleRenderer == null)
             Debug.LogError("No Activable Bubble with Renderer component!", gameObject);
@@ -73,6 +87,20 @@ public class Client : ActivableElement
             Debug.LogError("No TextMeshPro component found on Bubble Text", BubbleText);
 
         _bubbleTextMesh.text = "?";
+
+        if (_timerGO == null)
+        {
+            Debug.LogError("No Timer found on Client", _timerGO);
+        }
+        else
+        {
+            _imageTimer = _timerGO.GetComponentInChildren<Image>();
+            if (_imageTimer == null)
+                Debug.LogError("Missig image time on TImerGameObject", _timerGO);
+            _timerGO.SetActive(false);
+        }
+
+        _bubbleTextMesh.text = _clientDialogueSO.HelloPhrases[Randomizer.Get().Next(_clientDialogueSO.HelloPhrases.Count)];
     }
 
     protected override void OnTriggerEnter(Collider other)
@@ -103,6 +131,7 @@ public class Client : ActivableElement
         _order = Recipe.GenerateRecipe();
         _bubbleTextMesh.text = RecipeToText();
 
+        _timerRoutine = StartCoroutine(WaitingTimer());
         _state = State.Ordering;
     }
 
@@ -115,9 +144,10 @@ public class Client : ActivableElement
                 Debug.LogWarning("Client does not find their order on Tray!");
             return;
         }
-
+        StopCoroutine(_timerRoutine);
+        _timerGO.SetActive(false);
         tray.Remove(drinkMatchingOrder.gameObject);
-        _bubbleTextMesh.text = "Thx\nbye!";
+        _bubbleTextMesh.text = _clientDialogueSO.WinPhrases[Randomizer.Get().Next(_clientDialogueSO.WinPhrases.Count)];
 
         _state = State.Leaving;
     }
@@ -145,5 +175,24 @@ public class Client : ActivableElement
         {
             Debug.LogError("Missing exit position");
         }
+    }
+    public IEnumerator WaitingTimer()
+    {
+        _timerGO.SetActive(true);
+        float time = 0f;
+        while (time < _waitingTime)
+        {
+            _imageTimer.fillAmount = time / _waitingTime;
+            if ((time / _waitingTime) > 0.75f)
+            {
+                _imageTimer.color = Color.red;
+            }
+            time += Time.deltaTime;
+            yield return null;
+        }
+        _bubbleTextMesh.text = _clientDialogueSO.LoosePhrases[Randomizer.Get().Next(_clientDialogueSO.LoosePhrases.Count)];
+
+        _state = State.Leaving;
+        _timerGO.SetActive(false);
     }
 }
