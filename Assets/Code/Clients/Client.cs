@@ -183,9 +183,15 @@ public class Client : ActivableElement
         while (time < _waitingTime)
         {
             _imageTimer.fillAmount = time / _waitingTime;
+            if ((time / _waitingTime) > 0.5f)
+            {
+                _timerGO.gameObject.GetComponent<ShakeObject>().Shake();
+            }
+
             if ((time / _waitingTime) > 0.75f)
             {
                 _imageTimer.color = Color.red;
+                _timerGO.gameObject.GetComponent<ShakeObject>().Shake();
             }
             time += Time.deltaTime;
             yield return null;

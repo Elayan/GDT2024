@@ -309,6 +309,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1798067923841474541}
+  - component: {fileID: 9093306396473857543}
   m_Layer: 0
   m_Name: Timer
   m_TagString: Untagged
@@ -332,6 +333,21 @@ Transform:
   - {fileID: 6021845696955465321}
   m_Father: {fileID: 1481424908310638095}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9093306396473857543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2519006013704379499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2417a39338b82349b8304c90e598224, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShakeDuration: 5
+  _shakeSmoothness: 0.1
+  _shakeStrength: 0.1
 --- !u!1 &3132396135588280262
 GameObject:
   m_ObjectHideFlags: 0
@@ -419,7 +435,7 @@ MonoBehaviour:
   BubbleText: {fileID: 4644236867005688461}
   WaitTimeBeforeLeaving: 2
   _speed: 4
-  _waitingTime: 10
+  _waitingTime: 5
   _timerGO: {fileID: 2519006013704379499}
 --- !u!1 &3983244987544816038
 GameObject:
