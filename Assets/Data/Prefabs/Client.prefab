@@ -346,8 +346,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShakeDuration: 5
-  _shakeSmoothness: 0.1
-  _shakeStrength: 0.1
+  _distance: 0.05
 --- !u!1 &3132396135588280262
 GameObject:
   m_ObjectHideFlags: 0
@@ -435,7 +434,7 @@ MonoBehaviour:
   BubbleText: {fileID: 4644236867005688461}
   WaitTimeBeforeLeaving: 2
   _speed: 4
-  _waitingTime: 5
+  _waitingTime: 10
   _timerGO: {fileID: 2519006013704379499}
 --- !u!1 &3983244987544816038
 GameObject:

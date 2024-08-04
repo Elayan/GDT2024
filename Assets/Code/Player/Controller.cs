@@ -6,6 +6,8 @@ using UnityEngine.InputSystem;
 public class Controller : MonoBehaviour
 {
     public bool DebugLog = false;
+    [SerializeField]
+    private Rigidbody _rb;
     public float Speed = 1f;
 
     private GameObject _camera = null;
@@ -31,11 +33,17 @@ public class Controller : MonoBehaviour
         _tray = GetComponentInChildren<Tray>();
         if (_tray == null)
             Debug.LogError($"No Tray component found in {name}'s children!", gameObject);
+        if (_rb == null)
+            Debug.LogError($"Missing rigidbody on {name}", gameObject);
     }
 
     private void Update()
     {
-        gameObject.transform.Translate(_movement * Speed * Time.deltaTime);
+     //   gameObject.transform.Translate(_movement * Speed * Time.deltaTime);
+    }
+    private void FixedUpdate()
+    {
+        _rb.MovePosition(gameObject.transform.position + _movement * Speed * Time.deltaTime);
     }
 
     void OnMove(InputValue value)
