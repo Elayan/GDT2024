@@ -11,9 +11,9 @@ public class ClientDialogueSO : ScriptableObject
     [SerializeField]
     private List<string> _winPhrases;
     [SerializeField]
-    private List<string> _loosePhrase;
+    private List<string> _loosePhrases;
 
     public List<string> HelloPhrases { get => _helloPhrases; }
     public List<string> WinPhrases { get => _winPhrases; }
-    public List<string> LoosePhrases { get => _loosePhrase; }
+    public List<string> LoosePhrases { get => _loosePhrases; }
 }
