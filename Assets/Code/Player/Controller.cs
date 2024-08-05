@@ -43,7 +43,7 @@ public class Controller : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        _rb.MovePosition(gameObject.transform.position + _movement * Speed * Time.deltaTime);
+        _rb.MovePosition(gameObject.transform.position + _movement * Speed * Time.fixedDeltaTime);
     }
 
     void OnMove(InputValue value)
