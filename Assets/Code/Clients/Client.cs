@@ -4,12 +4,14 @@ using System.Linq;
 using System.Text;
 using TMPro;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.UI;
 
 public class Client : ActivableElement
 {
     public bool DebugLog = false;
-
+    [SerializeField]
+    private NavMeshAgent _agent;
     [SerializeField]
     private ClientDialogueSO _clientDialogueSO;
     public Color ActivableBubbleColor = Color.white;
@@ -59,7 +61,7 @@ public class Client : ActivableElement
 
         if (_exit != null)
         {
-            transform.Translate((_exit.position - transform.position).normalized * _speed * Time.deltaTime);
+            //transform.Translate((_exit.position - transform.position).normalized * _speed * Time.deltaTime);
         }
         WaitTimeBeforeLeaving -= Time.deltaTime;
         if (WaitTimeBeforeLeaving < 0.0f)
@@ -101,6 +103,7 @@ public class Client : ActivableElement
         }
 
         _bubbleTextMesh.text = _clientDialogueSO.HelloPhrases[Randomizer.Get().Next(_clientDialogueSO.HelloPhrases.Count)];
+        
     }
 
     protected override void OnTriggerEnter(Collider other)
@@ -175,6 +178,7 @@ public class Client : ActivableElement
         {
             Debug.LogError("Missing exit position");
         }
+        _agent.SetDestination(_exit.transform.position);
     }
     public IEnumerator WaitingTimer()
     {
@@ -200,5 +204,9 @@ public class Client : ActivableElement
 
         _state = State.Leaving;
         _timerGO.SetActive(false);
+    }
+    public void SetDestination(Vector3 target)
+    {
+        _agent.SetDestination(target);
     }
 }

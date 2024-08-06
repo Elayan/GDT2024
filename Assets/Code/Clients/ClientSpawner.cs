@@ -8,6 +8,8 @@ public class ClientSpawner : MonoBehaviour
     private GameObject _clientPrefab;
     [SerializeField]
     private float _spawningTimer = 4f;
+    [SerializeField]
+    private Transform _spawnPos;
 
 
     private Randomizer _rand;
@@ -47,8 +49,11 @@ public class ClientSpawner : MonoBehaviour
         {
             _activeClient.GetComponent<Client>().OnLeaving -= SpawnClient;
         }
-        _activeClient = Instantiate(_clientPrefab, seat.transform.position, seat.transform.rotation);
+        //_activeClient = Instantiate(_clientPrefab, seat.transform.position, seat.transform.rotation);
+        _activeClient = Instantiate(_clientPrefab, _spawnPos.position, _spawnPos.rotation);
+
         _activeClient.transform.SetParent(seat.transform);
+        _activeClient.GetComponent<Client>().SetDestination(seat.transform.position);
         _activeClient.GetComponent<Client>().OnLeaving += SpawnClient;
     }
    
