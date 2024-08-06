@@ -9,6 +9,8 @@ public class Controller : MonoBehaviour
     [SerializeField]
     private Rigidbody _rb;
     public float Speed = 1f;
+    [SerializeField]
+    private float _rotationSpeed = 5f;
 
     private GameObject _camera = null;
     private Vector3 _movement = Vector3.zero;
@@ -40,6 +42,8 @@ public class Controller : MonoBehaviour
     private void Update()
     {
      //   gameObject.transform.Translate(_movement * Speed * Time.deltaTime);
+     if (_movement != Vector3.zero)
+        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(_movement, Vector3.up), Time.deltaTime * _rotationSpeed);
     }
     private void FixedUpdate()
     {
