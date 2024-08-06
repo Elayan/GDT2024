@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _helloPhrases:
   - Hello!
+  - Wesh
   - Bonjour !
   - Ciao
-  - Wesh
   _winPhrases:
   - Thx ! Bye !
-  _loosePhrase:
-  - Sorry ! Too slow !
+  _loosePhrases:
+  - Too Slow !

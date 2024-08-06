@@ -434,7 +434,7 @@ MonoBehaviour:
   BubbleText: {fileID: 4644236867005688461}
   WaitTimeBeforeLeaving: 2
   _speed: 4
-  _waitingTime: 10
+  _waitingTime: 4
   _timerGO: {fileID: 2519006013704379499}
 --- !u!1 &3983244987544816038
 GameObject:

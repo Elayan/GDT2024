@@ -7,10 +7,12 @@ public class ClientSpawner : MonoBehaviour
     [SerializeField]
     private GameObject _clientPrefab;
     [SerializeField]
-    private List<Transform> _clientSpawnPosList;
+    private float _spawningTimer = 4f;
+
 
     private Randomizer _rand;
     private GameObject _activeClient;
+    private float _timeSinceSpawn;
 
     // Start is called before the first frame update
     void Start()
@@ -22,18 +24,31 @@ public class ClientSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (_timeSinceSpawn >= _spawningTimer)
+        {
+            SpawnClient();
+        }
+        else
+        {
+            _timeSinceSpawn += Time.deltaTime;
+        }
     }
 
     private void SpawnClient()
     {
-        int chosenPos = _rand.Next(_clientSpawnPosList.Count);
+        GameObject seat = GetComponent<Counter>().TakeFreeSeat();
+        if (seat == null)
+        {
+            Debug.Log("No more seat");
+            return;
+        }
+        _timeSinceSpawn = 0f;
         if (_activeClient != null)
         {
             _activeClient.GetComponent<Client>().OnLeaving -= SpawnClient;
         }
-        _activeClient = Instantiate(_clientPrefab, _clientSpawnPosList[chosenPos].position, _clientSpawnPosList[chosenPos].rotation);
-        _activeClient.transform.SetParent(_clientSpawnPosList[chosenPos]);
+        _activeClient = Instantiate(_clientPrefab, seat.transform.position, seat.transform.rotation);
+        _activeClient.transform.SetParent(seat.transform);
         _activeClient.GetComponent<Client>().OnLeaving += SpawnClient;
     }
    
