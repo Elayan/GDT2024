@@ -13,13 +13,16 @@ public class Counter : MonoBehaviour
     private List<bool> _usedSeat;
     private Randomizer _rand;
 
+    private void Awake()
+    {
+        _rand = Randomizer.Get();
+    }
     // Start is called before the first frame update
     void Start()
     {
         _clientSpawner = GetComponent<ClientSpawner>();
         if (_clientSpawner == null)
             Debug.LogError("Error with ClientSpawner On");
-        _rand = Randomizer.Get();
     }
 
     // Update is called once per frame

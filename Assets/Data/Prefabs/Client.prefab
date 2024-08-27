@@ -258,13 +258,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2141495532384028073}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.22518112, z: -0, w: 0.97431695}
-  m_LocalPosition: {x: -1.7, y: 1, z: 1}
-  m_LocalScale: {x: 3, y: 1, z: 3}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2300938043550639642}
-  m_LocalEulerAnglesHint: {x: 0, y: 26.027, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &5210168254930785153
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -284,7 +284,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
@@ -434,9 +434,9 @@ MonoBehaviour:
   ActivableBubbleColor: {r: 0, g: 0.4180913, b: 1, a: 1}
   ActivableBubble: {fileID: 8321000557413948623}
   BubbleText: {fileID: 4644236867005688461}
-  WaitTimeBeforeLeaving: 2
+  WaitTimeBeforeLeaving: 5
   _speed: 4
-  _waitingTime: 4
+  _waitingTime: 8
   _timerGO: {fileID: 2519006013704379499}
 --- !u!195 &8843176493570331739
 NavMeshAgent:

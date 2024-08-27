@@ -3741,6 +3741,10 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 112
       objectReference: {fileID: 0}
+    - target: {fileID: 8231880244910216368, guid: 16cc3eb3ffefbbb409d4ff56a432e698, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9132942965526850700, guid: 16cc3eb3ffefbbb409d4ff56a432e698, type: 3}
       propertyPath: m_Name
       value: Hero

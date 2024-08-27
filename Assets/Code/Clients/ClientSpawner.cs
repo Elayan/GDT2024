@@ -49,7 +49,6 @@ public class ClientSpawner : MonoBehaviour
         {
             _activeClient.GetComponent<Client>().OnLeaving -= SpawnClient;
         }
-        //_activeClient = Instantiate(_clientPrefab, seat.transform.position, seat.transform.rotation);
         _activeClient = Instantiate(_clientPrefab, _spawnPos.position, _spawnPos.rotation);
 
         _activeClient.transform.SetParent(seat.transform);
